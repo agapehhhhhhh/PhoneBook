@@ -1,0 +1,64 @@
+phone_book = {}
+
+def tambah_kontak(nama, nomor_telepon):
+    phone_book[nama] = nomor_telepon
+    print(f"{nama} telah ditambahkan ke buku telepon.")
+
+def baca_kontak(nama):
+    if nama in phone_book:
+        nomor_telepon = phone_book[nama]
+        print(f"{nama}: {nomor_telepon}")
+    else:
+        print(f"{nama} tidak ditemukan di dalam buku telepon.")
+
+def hapus_kontak(nama):
+    if nama in phone_book:
+        del phone_book[nama]
+        print(f"{nama} telah dihapus dari buku telepon.")
+    else:
+        print(f"{nama} tidak ditemukan di dalam buku telepon.")
+    
+def cari_kontak(term_cari):
+    hasil = []
+    for nama, nomor_telepon in phone_book.items():
+        if term_cari in nama or term_cari in nomor_telepon:
+            hasil.append((nama, nomor_telepon))
+        if hasil:
+            print("Hasil pencarian:")
+            for nama, nomor_telepon in hasil:
+                print(f"{nama}: {nomor_telepon}")
+        else:
+            print("Tidak ada hasil ditemukan.")
+
+while True:
+    print("\nBuku Telepon")
+    print("1. Tambah kontak")
+    print("2. Baca kontak")
+    print("3. Hapus kontak")
+    print("4. Cari kontak")
+    print("5. Keluar")
+
+    choice = input("Masukkan pilihan: ")
+
+    if choice == "1":
+        nama = input("Masukkan nama kontak: ")
+        nomor_telepon = input("Masukkan nomor telepon kontak: ")
+        tambah_kontak(nama, nomor_telepon)
+
+    elif choice == "2":
+        nama = input("Masukkan nama kontak: ")
+        baca_kontak(nama)
+
+    elif choice == "3":
+        nama = input("Masukkan nama kontak: ")
+        hapus_kontak(nama)
+
+    elif choice == "4":
+        term_cari = input("Masukkan nama kontak: ")
+        cari_kontak(term_cari)
+
+    elif choice == "5":
+        print("KELUAR!!")
+        break
+    else:
+        print("Pilihan tidak valid. Silakan coba lagi.")
